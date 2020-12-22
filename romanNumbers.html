@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const romanNumbers = {
+      I: 1,
+      V: 5,
+      X: 10,
+      L: 50,
+      C: 100,
+      D: 500,
+      M: 1000
+    }
+    const getRomanNumber = number => {
+      const arr = number.toString().split("")
+      return arr.reduce((acc, cvalue, index) => {
+        const cNumber = Number(Object.values(romanNumbers)[Object.keys(romanNumbers).indexOf(cvalue)])
+        const pNumber = Number(Object.values(romanNumbers)[Object.keys(romanNumbers).indexOf(arr[index > 0 ? index - 1 : index])])
+        if (cNumber > pNumber) {
+          acc += (cNumber - (pNumber + pNumber))
+        } else {
+          acc = Number(acc) + cNumber
+        }
+        return acc
+      }, 0)
+    }
+    console.log(getRomanNumber("XXXIX"))
+  </script>
+</body>
+
+</html>
